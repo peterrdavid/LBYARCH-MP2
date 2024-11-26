@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// x86-64 assembly kernel
+
 // C kernel
 void saxpy_c(float *X, float *Y, float *Z, int n, float A) {
     for (int i = 0; i < n; i++) {
@@ -74,6 +76,8 @@ int main() {
 
     // call C kernel
     saxpy_c(X, Y, Z_c, n, A);
+
+    // call x86-64 assembly kernel
 
     // C Output
     printf("\nResult:\n");
