@@ -29,6 +29,21 @@ int main() {
         return -1;
     }
 
+    // allocate memory
+    X = (float *)malloc(n * sizeof(float));
+    Y = (float *)malloc(n * sizeof(float));
+    Z_c = (float *)malloc(n * sizeof(float));
+    Z_asm = (float *)malloc(n * sizeof(float));
+
+    if (!X || !Y || !Z_c || !Z_asm) {
+        printf("Memory allocation failed.\n");
+        free(X);
+        free(Y);
+        free(Z_c);
+        free(Z_asm);
+        return -1;
+    }
+
     // input vector X values
     printf("\nEnter %d elements for vector X:\n", n);
     for (i = 0; i < n; i++) {
@@ -63,8 +78,14 @@ int main() {
     // C Output
     printf("\nResult:\n");
     for (i = 0; i < (n < 10 ? n : 10); i++) {
-        printf("C Kernel: Z[%d] = %.2f\n", i, Z_c[i]);
+        printf("C: Z[%d] = %.2f\n", i, Z_c[i]);
     }
+
+    // free allocated memory
+    free(X);
+    free(Y);
+    free(Z_c);
+    free(Z_asm);
 
     return 0;
 }
