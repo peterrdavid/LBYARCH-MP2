@@ -1,40 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // x86-64 assembly kernel
 
 // C kernel
 void saxpy_c(float *X, float *Y, float *Z, int n, float A) {
+  printf("N = %d\n", n);
+  printf("A = %f\n", A);
   for (int i = 0; i < n; i++) {
     Z[i] = A * X[i] + Y[i]; // SAXPY (A * X + Y) function
   }
 }
 
 int main() {
-  int n; // vector size
   int i; // index
-  int j;
-  float *X, *Y;       // pointers to vectors X and Y (input vectors)
-  float *Z_c, *Z_asm; // pointers to vectors Z for C and x86-64 assembly (result
-                      // vectors)
+  int j; // index
   float A;            // scalar values
-  int vector_sizes[] = {1 << 20, 1 << 24, 1 << 30};
+  float *X, *Y;       // pointers to vectors X and Y (input vectors)
+  float *Z_c, *Z_asm; // pointers to vectors Z for C and x86-64 assembly (result vectors)
+  int vector_sizes[] = {3, 1 << 20, 1 << 24, 1 << 30};
   int c_runtimes[3];
   int asm_runtimes[3];
 
-  // input scalar value
-  printf("Enter scalar value (A): ");
-  if (scanf("%f", &A) != 1) {
-    printf("Invalid input.\n");
-    return -1;
-  }
+  for (i = 0; i < 1; i++) { //only picks first for testing
+    A = rand() % 21;
 
-  for (i = 0; i < 3; i++) {
-    // free memory
-    free(X);
-    free(Y);
-    free(Z_c);
-    free(Z_asm);
+    printf("size = %d \n", vector_sizes[i]);
+    printf("A = %.2f \n\n", A);
 
     // allocate memory
     X = (float *)malloc(vector_sizes[i] * sizeof(float));
@@ -51,27 +44,31 @@ int main() {
       return -1;
     }
 
-    for (j = 0; j < vector_sizes[i]; i++) {
-      X[i] = Y[i] = rand() % 20;
+    for (j = 0; j < vector_sizes[i]; j++) {
+      printf("Current iteration of j = %d \n", j);
+      float n = rand() % 21;
+      X[j] = Y[j] = n;
+      printf("X vector position %d = %f \n", j, X[j]);
+      printf("Y vector position %d = %f \n\n", j, Y[j]);
     }
+
+    // call C kernel
+    saxpy_c(X, Y, Z_c, vector_sizes[i], A);
+
+    // call x86-64 assembly kernel
+
+    // C Output
+    printf("\nResult:\n");
+    for (i = 0; i < (vector_sizes[i] < 10 ? vector_sizes[i] : 10); i++) {
+      printf("C: Z[%d] = %.2f\n", i, Z_c[i]);
+    }
+
+    // free memory
+    free(X);
+    free(Y);
+    free(Z_c);
+    free(Z_asm);
   }
-
-  // call C kernel
-  saxpy_c(X, Y, Z_c, n, A);
-
-  // call x86-64 assembly kernel
-
-  // C Output
-  printf("\nResult:\n");
-  for (i = 0; i < (n < 10 ? n : 10); i++) {
-    printf("C: Z[%d] = %.2f\n", i, Z_c[i]);
-  }
-
-  // free allocated memory
-  free(X);
-  free(Y);
-  free(Z_c);
-  free(Z_asm);
 
   return 0;
 }
