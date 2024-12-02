@@ -26,9 +26,12 @@ The goal is to compare the performance of the C implementation against the assem
 3. **If the batch script does not run, follow these steps manually:**
 
     nasm -f win64 saxpy_asm.asm
-     gcc -c saxpy_c.c -o saxpy_c.obj -m64
-     gcc saxpy_c.obj saxpy_asm.obj -o saxpy.exe -m64
-     ./saxpy.exe
+
+    gcc -c saxpy_c.c -o saxpy_c.obj -m64
+
+    gcc saxpy_c.obj saxpy_asm.obj -o saxpy.exe -m64
+
+    ./saxpy.exe
 
 ## Comparative Execution Time and Performance Analysis
 ### Execution Time Results
@@ -44,9 +47,11 @@ The goal is to compare the performance of the C implementation against the assem
 
 ### Performance Analysis
 1. **C Implementation**
+
     For all runs, the first 10 elements of the result vector Z are consistent and match the expected computation.
 
 2. **Assembly Implementation**
+
     The Assembly kernel produces exactly the same results as the C kernel for the same inputs.
 
 3. **Observations**
