@@ -21,7 +21,7 @@ The goal is to compare the performance of the C implementation against the assem
 
 2. **Run the batch script**
 
-    run.bat
+    ./run.bat
 
 3. **If the batch script does not run, follow these steps manually:**
 
