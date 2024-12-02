@@ -34,6 +34,13 @@ The goal is to compare the performance of the C implementation against the assem
     ./saxpy.exe
 
 ## Comparative Execution Time and Performance Analysis
+![image](https://github.com/user-attachments/assets/fda4ab55-3f40-47ab-99cf-30a882c5bdf4)
+![image](https://github.com/user-attachments/assets/a3df2143-c7b0-4427-870f-4e90881c0c7e)
+![image](https://github.com/user-attachments/assets/29b4e3a8-31bf-448e-828d-9ced0e5ac174)
+
+## Google Drive Video Link
+https://drive.google.com/file/d/14Pro1GOfZtkS6tYIwSokaLq7tRcCdkfK/view?usp=sharing
+
 ### Execution Time Results
 1. **C Kernel:**
 - Run 1 (Vector Size: 1048576): Duration = 1
