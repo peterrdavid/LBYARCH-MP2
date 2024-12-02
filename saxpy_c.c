@@ -14,12 +14,12 @@ void saxpy_c(float *X, float *Y, float *Z, int n, float A) {
 }
 
 int main() {
-  int i;
+  int i;  
   int j;
-  float A;
-  float *X, *Y;
+  float A;         
+  float *X, *Y;       
   float *Z_c, *Z_asm;
-  int vector_sizes[] = {1 << 20, 1 << 24, 1 << 28};
+  int vector_sizes[] = {1 << 20, 1 << 24, 1 << 28}; 
   clock_t start_time, end_time;
   long durations[30];
   long durations_sum = 0;
@@ -27,7 +27,7 @@ int main() {
   int asm_avg_runtimes[3];
 
   // Initiate random number generation
-  srand(time(NULL));
+  srand(time(NULL)); 
 
 
   // Loop for the 3 vector sizes (2^20, 2^24, 2^28)
