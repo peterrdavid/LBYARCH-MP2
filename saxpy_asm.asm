@@ -13,7 +13,7 @@ L1:
     MOV rax, rcx
     MOVSS xmm4, [rax + r10*4]
     MOV rax, rdx 
-    MOVSS xmm5, [rax + r10*4] ; xmm5 = Y[i]
+    MOVSS xmm5, [rax + r10*4]
     MULSS xmm4, xmm6
     ADDSS xmm4, xmm5
     MOV rax, r8
